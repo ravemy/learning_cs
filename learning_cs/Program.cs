@@ -18,15 +18,19 @@ namespace MyCalc2
         static void Methods()
         {
             int a = 11;
-            int b = C(a);
+            int e = 4;
+            int b = C(e, 7);
+
+
+            int t = C(6, a);
 
             Console.WriteLine(b);
 
             // =======
 
-            int C(int x)
+            int C(int h, int j)
             {
-                return x * x;
+                return h*h +j;
             }
 
             // Optional Arguments
@@ -43,6 +47,59 @@ namespace MyCalc2
             }
 
             int d=Pow(4);
+
+            // ref
+
+
+            int a1 = 7;
+            int a2 = 9;
+
+            Console.WriteLine($"Before: a1={a1}, a2={a2}");
+
+            Swap(ref a1, ref a2);
+
+            Console.WriteLine($"After:  a1={a1}, a2={a2}");
+            
+            void Swap(ref int x, ref int y)
+            {
+                int temp = x;
+                x = y;
+                y = temp;
+            }
+
+            // out
+
+            Console.Write("Nummer eingeben: ");
+            string userInputStr = Console.ReadLine();
+
+            // kann exeption hervorrufen
+            //int value = int.Parse(userInputStr);
+
+            int iValue;
+            double dValue;
+            if (int.TryParse(userInputStr, out iValue))
+            {
+                DoStuff(iValue);
+            }
+            else if (double.TryParse(userInputStr, out dValue))
+            {
+                DoStuff(dValue);
+            }
+            else
+            {
+                Console.WriteLine("Die eingegebene Zahl ist kein Integer");
+            }
+
+        }
+
+        static void DoStuff(int i)
+        {
+            Console.WriteLine($"Hälfte der eingegebenen Zahl: {i / 2}");
+        }
+
+        static void DoStuff(double d)
+        {
+            Console.WriteLine($"Doppelte der eingegebenen Zahl: {d * 2}");
         }
 
         static void ConditionalsAndLoops()
